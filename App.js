@@ -31,6 +31,14 @@ export default function App() {
           <Drawer.Screen name="Spaceships" component={Spaceships} />
         </Drawer.Navigator>
       )}
+
+      {Platform.OS === "web" && (
+        <Tab.Navigator>
+          <Tab.Screen name="Planets" component={Planets} />
+          <Tab.Screen name="Films" component={Films} />
+          <Tab.Screen name="Starships" component={Starships} />
+        </Tab.Navigator>
+      )}
     </NavigationContainer>
   );
 }

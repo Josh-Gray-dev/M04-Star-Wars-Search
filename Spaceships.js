@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, TextInput, Modal } from "react-native";
 import styles from "./styles";
 
 function mapStarships(results) {
@@ -27,6 +27,43 @@ export default function Spaceships() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.textInputContainer}>
+        <Text style={styles.textInputLabel}>Spaceship search:</Text>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Type a search term"
+          value={changedText}
+          onChangeText={(text) => {
+            setChangedText(text);
+          }}
+          onSubmitEditing={(e) => {
+            const text = e.nativeEvent.text;
+            setSubmittedText(text);
+            setModalVisible(true);
+          }}
+          returnKeyType="search"
+        />
+      </View>
+
+      <Modal
+        transparent
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalInner}>
+            <Text style={styles.modalText}>You entered:</Text>
+            <Text style={styles.modalText}>{submittedText}</Text>
+            <Text
+              style={styles.modalButton}
+              onPress={() => setModalVisible(false)}
+            >
+              Close
+            </Text>
+          </View>
+        </View>
+      </Modal>
+
       {loading ? (
         <ActivityIndicator />
       ) : (
