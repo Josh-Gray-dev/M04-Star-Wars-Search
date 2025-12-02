@@ -12,6 +12,9 @@ function mapFilms(results) {
 export default function Films() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [changedText, setChangedText] = useState("");
+  const [submittedText, setSubmittedText] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     fetch("https://swapi.dev/api/films/")

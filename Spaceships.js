@@ -12,6 +12,9 @@ function mapStarships(results) {
 export default function Spaceships() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [changedText, setChangedText] = useState("");
+  const [submittedText, setSubmittedText] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     fetch("https://swapi.dev/api/starships/")
